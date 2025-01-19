@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+
+    <style>
+        body{
+            background-color: black;
+        }
+        .card {
+            height: 100px;
+            width: 100px;
+            background-color: chartreuse;
+            color: black;
+            display: flex;
+            justify-content: center;
+            /* keeps its horzon*/
+            align-items: center;
+            /* keeps it verticaly*/
+        }
+
+        /* these are subclasses*/
+        .card.flipped {
+            background-color: aquamarine;
+            color: blue;
+        }
+
+        .card.matched { /* this is a class*/
+            opacity: 0.5;
+        }
+
+        .gameboard {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="gameboard" id="Gameboard"> 
+    </div>
+
+<script src="script.js"></script>
+</body>
+
+</html>
