@@ -1,4 +1,9 @@
 const gameboard= document.getElementById("Gameboard") 
+gameboard.addEventListener('click', (event) => {
+    if (event.target.classList.contains('card')) {
+        flippedcard(event.target)
+    }
+} )
 let card1 = null
 let card2 = null
 
@@ -43,17 +48,43 @@ gameboard.appendChild(newElement);
 function flippedcard(card){
     if (lockedcard) return 
     if (card1 == card) return
-    if (newElement.classList.contains('match')) return
+    if (card.classList.contains('matched')) return
 
-    card.classlist.add('flipped')
-    card.innertext= card.dataset.icon /* innertext=emoji*/
+    card.classList.add('flipped')
+    card.innerText= card.dataset.icon 
+    /* innertext=emoji*/
     if (card1 == null){
     card1=card
+   
 }else{
     card2=card
 checkmatched() 
 }
 }
-/* 2 = if using in if statement*/ 
+/* 2 = if using in if statement to compare*/ 
 
+function checkmatched(){
 
+  if  (card1.innerText == card2.innerText){
+    alert("Matched")
+card1.classList.add(`matched`)
+card2.classList.add(`matched`)
+card1 = null
+card2 = null
+  } else {
+    alert("Not Matched")
+setTimeout(() => {
+    card1.classList.remove(`flipped`)
+    card2.classList.remove(`flipped`)
+    card1.innerText= "?"
+    card2.innerText= "?"
+    card1 = null
+    card2 = null
+}, 1000)
+
+  } 
+  
+
+    lockedcard = false
+ /* once we add remove word then add card.innertext = ?*/
+}

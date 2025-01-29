@@ -46,3 +46,65 @@ listElement.appendChild(listItemElement);
    <li></li>
    <li></li>
 </ol>
+
+
+function checkmatched(){
+    if (card1.dataset.icon == card2.dataset.icon){
+        card1.classList.add('match')
+        card2.classList.add('match')
+        card1=null
+        card2=null
+    }else{
+        lockedcard=true
+        setTimeout(()=>{
+            card1.classList.remove('flipped')
+            card2.classList.remove('flipped')
+            card1.innerText="?"
+            card2.innerText="?"
+            card1=null
+            card2=null
+            lockedcard=false
+        },1000)
+    }
+}
+
+function resetgame(){
+    card1=null
+    card2=null
+    lockedcard=false
+    gameboard.innerHTML=""
+    shuffle(cards)
+    cards.forEach((emoji)=> {
+        const newElement = document.createElement('div');
+        newElement.classList.add('card');
+        newElement.dataset.icon= emoji
+        newElement.innerText="?"
+        gameboard.appendChild(newElement);
+    } )
+}
+
+function checkwin(){
+    if (document.querySelectorAll('.match').length == cards.length){
+        alert('You win!')
+    }
+}       
+
+function unflipcards(){
+    card1.classList.remove('flipped')
+    card2.classList.remove('flipped')
+    card1.innerText="?"
+    card2.innerText="?"
+    card1=null
+    card2=null
+    lockedcard=false
+}
+
+gameboard.addEventListener('click', (event)=>{
+    if (event.target.classList.contains('card')){
+        flippedcard(event.target)
+    }
+})
+
+document.getElementById('reset').addEventListener('click', resetgame)
+
+
